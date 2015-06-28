@@ -16,9 +16,13 @@
 
 
 > **好后缀 第一种情况**
+
+
 ![别人的图 写的画的非常清晰](http://blog.chinaunix.net/attachment/201208/21/23390992_1345513210YqBY.png)
 
 > **好后缀 第二种情况**
+
+
 ![](http://blog.chinaunix.net/attachment/201208/21/23390992_13455132162y7b.png)
 
 
