@@ -3,6 +3,15 @@
 INT_MAX 表示正无穷
 假设有如下带权邻接矩阵
 严老师 数据结构  P189
+
+这个算法是有一个论点支持的，即：
+假设S是已求得最短路径的终点的集合，则：
+下一条最短路径（vi）必是下面两种情况之一：
+1. v0-vi
+2. v0-S-vi
+
+有人要问了：有可能存在一个点 vj（vj不属于S）  v0-vj-vi 比上面两个要小
+答：不可能，这个算法比的就是哪个点距离短，我就收了谁。显然v0-vj 比v0-vj-vi要短，我现在已经在考虑vi了，说明vj已经被我收了啊
 */
 #include <iostream>
 #include <map>
@@ -18,7 +27,18 @@ pair<int, int> findShortPos(int v_0, WEIGHTMATRIX & w_matrix, U & u, S & s, pair
 {
 	int pos = 0;
 	int value = INT_MAX;
-	//for (auto & si : s)//s中存的点  优化 
+	/*
+		为什么可以不用遍历，因为这是重复劳动！！！
+		假设总共三个节点：s1、s2、s3
+		第一次： s = {s1}
+		v0-ui 的距离  v1-s1-ui的情况我全遍历了,并且知道v0-s2最短
+		第二次： s = {s1,s2}
+		v0-ui 的距离  v1-s1-ui的情况我全遍历了  (这里很明显是重复劳动啊,因为v1-s1-ui我已经考虑过了啊，v1-s1-ui的距离又不会变)
+		v0-ui 的距离   v1-s2-ui的情况我全遍历了
+		
+		所以，有人可能会问:v0-ui 的距离也考虑过了，为什么还要更新。答：因为v0-ui的距离每次都可能会被改变啊！！！
+	*/
+	//for (auto & si : s)//s中存的点  优化    //因为上面论点的支撑
 	//{                     //优化
 		for (auto & ui : w_matrix[si.first])//与si有连接的点
 		{
