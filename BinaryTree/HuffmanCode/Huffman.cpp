@@ -35,9 +35,9 @@ bool  sort_func(const shared_ptr<node<int>> a,const shared_ptr<node<int>> b)
  */
 shared_ptr<node<int>>  creatHuffmanTree(vector<shared_ptr<node<int>>> & v,int pos)
 {
-    //将权重最低的两个元素作为新元素的左右孩子节点，并将新元素插入到的正确位置（从低到高）
     while (v.size()-pos !=1)
     {
+        //将权重最低的两个元素作为新元素的左右孩子节点，并将新元素插入到的正确位置（从低到高）
         shared_ptr<node<int>> unleaf_node(new node<int>(0,v[0+pos]->weight+v[1+pos]->weight,v[0+pos],v[1+pos],false));
         auto iter = v.begin()+pos;
         for(;iter!=v.end();++iter)
