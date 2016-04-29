@@ -1,6 +1,7 @@
 
 /*
-	Æ½ºâ¶ş²æÅÅĞòÊ÷
+	å¹³è¡¡äºŒå‰æ’åºæ ‘
+	èµ„æ–™ï¼šä¸¥è”šæ• ã€Šæ•°æ®ç»“æ„ã€‹ p233 
 */
 
 #include <iostream>
@@ -11,14 +12,14 @@ using namespace std;
 class node{
 public:
 	int val;
-	int bf;//½áµãµÄÆ½ºâÒò×Ó
+	int bf;//ç»“ç‚¹çš„å¹³è¡¡å› å­
 	node * lchild;
 	node * rchild;
 	node(int a) :val(a),bf(0),lchild(nullptr),rchild(nullptr){}
 };
 
 /*
-	¹¦ÄÜ£º²éÕÒÔªËØÊÇ·ñ´æÔÚ
+	åŠŸèƒ½ï¼šæŸ¥æ‰¾å…ƒç´ æ˜¯å¦å­˜åœ¨
 */
 
 bool searchNode(node * root, int key)
@@ -33,7 +34,7 @@ bool searchNode(node * root, int key)
 }
 
 /*
-	¹¦ÄÜ£º×ó×ó£»ÏòÓÒË³Ê±×ª
+	åŠŸèƒ½ï¼šå·¦å·¦ï¼›å‘å³é¡ºæ—¶è½¬
 */
 
 void L_L_rotate(node * & root)
@@ -45,7 +46,7 @@ void L_L_rotate(node * & root)
 }
 
 /*
-	¹¦ÄÜ£ºÓÒÓÒ;Ïò×óÄæÊ±×ª
+	åŠŸèƒ½ï¼šå³å³;å‘å·¦é€†æ—¶è½¬
 */
 
 void R_R_rotate(node * & root)
@@ -57,7 +58,7 @@ void R_R_rotate(node * & root)
 }
 
 /*
-	¹¦ÄÜ£º×óÓÒ£»×ó×ÓÊ÷ÄæÊ±Õë×ª£»ÕûÌåË³Ê±Õë×ª
+	åŠŸèƒ½ï¼šå·¦å³ï¼›å·¦å­æ ‘é€†æ—¶é’ˆè½¬ï¼›æ•´ä½“é¡ºæ—¶é’ˆè½¬
 */
 
 void L_R_rotate(node * & root)
@@ -67,7 +68,7 @@ void L_R_rotate(node * & root)
 }
 
 /*
-	¹¦ÄÜ£ºÓÒ×ó£»ÓÒ×ÓÊ÷Ë³Ê±Õë×ª£»ÕûÌåÄæÊ±Õë×ª
+	åŠŸèƒ½ï¼šå³å·¦ï¼›å³å­æ ‘é¡ºæ—¶é’ˆè½¬ï¼›æ•´ä½“é€†æ—¶é’ˆè½¬
 */
 
 void R_L_rotate(node * & root)
@@ -77,9 +78,9 @@ void R_L_rotate(node * & root)
 }
 
 /*
-	¹¦ÄÜ£º²åÈëµ÷Õû×ó×ÓÊ÷
-	Çé¿ö1£º×ó×ó
-	Çé¿ö2£º×óÓÒ
+	åŠŸèƒ½ï¼šæ’å…¥è°ƒæ•´å·¦å­æ ‘
+	æƒ…å†µ1ï¼šå·¦å·¦
+	æƒ…å†µ2ï¼šå·¦å³
 */
 
 void insertLeftBalance(node * & root)
@@ -87,15 +88,15 @@ void insertLeftBalance(node * & root)
 	node * lc = root->lchild;
 	switch (lc->bf)
 	{
-	case 1://×ó×ó
+	case 1://å·¦å·¦
 		root->bf = 0;
 		lc->bf = 0;
 		L_L_rotate(root);
 		break;
-	case -1://×óÓÒ
+	case -1://å·¦å³
 		node * rd = lc->rchild;
 		//=====================
-		switch (rd->bf)//»­Í¼ÈİÒ×Àí½â
+		switch (rd->bf)//ç”»å›¾å®¹æ˜“ç†è§£
 		{
 		case 1:
 			root->bf = -1;
@@ -119,9 +120,9 @@ void insertLeftBalance(node * & root)
 }
 
 /*
-	¹¦ÄÜ£º ²åÈëµ÷ÕûÓÒ×ÓÊ÷
-	Çé¿ö1£ºÓÒÓÒ
-	Çé¿ö2£ºÓÒ×ó
+	åŠŸèƒ½ï¼š æ’å…¥è°ƒæ•´å³å­æ ‘
+	æƒ…å†µ1ï¼šå³å³
+	æƒ…å†µ2ï¼šå³å·¦
 */
 
 void insertRightBalance(node * & root)
@@ -129,7 +130,7 @@ void insertRightBalance(node * & root)
 	node * rc = root->rchild;
 	switch (rc->bf)
 	{
-	case 1://ÓÒ×ó£»Òª¿¼ÂÇËï×ÓµÄ×´Ì¬
+	case 1://å³å·¦ï¼›è¦è€ƒè™‘å­™å­çš„çŠ¶æ€
 	{
 		//=====================
 		node * ld = rc->lchild;
@@ -160,7 +161,7 @@ void insertRightBalance(node * & root)
 		root->bf = -1;
 		R_R_rotate(root);
 		break;
-	case -1://ÓÒÓÒ
+	case -1://å³å³
 		rc->bf = 0;
 		root->bf = 0;
 		R_R_rotate(root);
@@ -168,7 +169,7 @@ void insertRightBalance(node * & root)
 	}
 }
 /*
-	¹¦ÄÜ£º É¾³ıµ÷Õû×ó×ÓÊ÷;×ó×ÓÊ÷Ì«Éî
+	åŠŸèƒ½ï¼š åˆ é™¤è°ƒæ•´å·¦å­æ ‘;å·¦å­æ ‘å¤ªæ·±
 */
 void deleteLeftBalance(node * & root)
 {
@@ -216,7 +217,7 @@ void deleteLeftBalance(node * & root)
 }
 
 /*
-	¹¦ÄÜ£ºÉ¾³ıµ÷ÕûÓÒ×ÓÊ÷£»ÓÒ×ÓÊ÷Ì«Éî
+	åŠŸèƒ½ï¼šåˆ é™¤è°ƒæ•´å³å­æ ‘ï¼›å³å­æ ‘å¤ªæ·±
 */
 
 void deleteRightBalance(node * & root)
@@ -224,7 +225,7 @@ void deleteRightBalance(node * & root)
 	node * rc = root->rchild;
 	switch (rc->bf)
 	{
-	case 1://ÓÒ×ó
+	case 1://å³å·¦
 	{
 		node * ld = rc->lchild;
 		//=============================
@@ -253,12 +254,12 @@ void deleteRightBalance(node * & root)
 	}
 
 		break;
-	case 0://ÓÒÓÒ
+	case 0://å³å³
 		rc->bf = 1;
 		root->bf = -1;
 		R_R_rotate(root);
 		break;
-	case -1://ÓÒÓÒ
+	case -1://å³å³
 		rc->bf = 0;
 		root->bf = 0;
 		R_R_rotate(root);
@@ -267,7 +268,7 @@ void deleteRightBalance(node * & root)
 }
 
 /*
-	²åÈëÔªËØ	
+	æ’å…¥å…ƒç´ 	
 */
 
 bool insertNode(node * & root, node * elem,bool & taller)
@@ -280,27 +281,27 @@ bool insertNode(node * & root, node * elem,bool & taller)
 		taller = true;
 		return true;
 	}
-	if (root->val == elem->val)//Òª²åÈëµÄÔªËØÒÑ¾­´æÔÚ
+	if (root->val == elem->val)//è¦æ’å…¥çš„å…ƒç´ å·²ç»å­˜åœ¨
 	{
 		taller = false;
 		return false;
 	}
-	if (elem->val < root->val)//×ó×ÓÊ÷
+	if (elem->val < root->val)//å·¦å­æ ‘
 	{
-		if (!insertNode(root->lchild, elem,taller))//²åÈëÊ§°Ü
+		if (!insertNode(root->lchild, elem,taller))//æ’å…¥å¤±è´¥
 			return false;
-		if (taller)//×ó×ÓÊ÷¸ß¶È+1
+		if (taller)//å·¦å­æ ‘é«˜åº¦+1
 		{
 			switch (root->bf)
 			{
-			case 1 ://×ó×ÓÊ÷±¾ÉíÊÇ1£¬²åÈë³É¹¦ºó±ä³É2,ĞèÒªÆ½ºâ×ó×ÓÊ÷
+			case 1 ://å·¦å­æ ‘æœ¬èº«æ˜¯1ï¼Œæ’å…¥æˆåŠŸåå˜æˆ2,éœ€è¦å¹³è¡¡å·¦å­æ ‘
 				//leftBalance(root);
 				insertLeftBalance(root);
 				taller = false;
 				break;
 			case 0:       
 				root->bf = 1;
-				taller = true;//Ö»ÓĞ0±ä1Ê±²ÅÊÇÕæÕıÔö¸ß£¬»­Í¼ÈİÒ×Àí½â
+				taller = true;//åªæœ‰0å˜1æ—¶æ‰æ˜¯çœŸæ­£å¢é«˜ï¼Œç”»å›¾å®¹æ˜“ç†è§£
 				break;
 			case -1:
 				root->bf = 0;
@@ -308,12 +309,12 @@ bool insertNode(node * & root, node * elem,bool & taller)
 			}
 		}
 		return true;
-	}//×ó×ÓÊ÷
-	else//ÓÒ×ÓÊ÷
+	}//å·¦å­æ ‘
+	else//å³å­æ ‘
 	{
-		if (!insertNode(root->rchild, elem, taller))//²åÈëÊ§°Ü
+		if (!insertNode(root->rchild, elem, taller))//æ’å…¥å¤±è´¥
 			return false;
-		if (taller)//ÓÒ×ÓÊ÷¸ß¶È+1
+		if (taller)//å³å­æ ‘é«˜åº¦+1
 		{
 			switch (root->bf)
 			{
@@ -323,9 +324,9 @@ bool insertNode(node * & root, node * elem,bool & taller)
 				break;
 			case 0:
 				root->bf = -1;
-				taller = true;//Ö»ÓĞÔÚ0±ä-1µÄÊ±ºò²ÅÊÇÕæÕıÔö¸ß
+				taller = true;//åªæœ‰åœ¨0å˜-1çš„æ—¶å€™æ‰æ˜¯çœŸæ­£å¢é«˜
 				break;
-			case -1://±¾ÉíÓÒ×ÓÊ÷¾Í¸ß1£¬ÏÖÔÚÓÖ¸ßÁË£¬ĞèÒªµ÷Õû
+			case -1://æœ¬èº«å³å­æ ‘å°±é«˜1ï¼Œç°åœ¨åˆé«˜äº†ï¼Œéœ€è¦è°ƒæ•´
 				//rightBalance(root);
 				insertRightBalance(root);
 				taller = false;
@@ -336,17 +337,17 @@ bool insertNode(node * & root, node * elem,bool & taller)
 	}
 }
 /*
-	¹¦ÄÜ£ºÉ¾³ıÒ»¸ö½áµã
+	åŠŸèƒ½ï¼šåˆ é™¤ä¸€ä¸ªç»“ç‚¹
 */
 bool deleteNode(node * & root,int key,bool & lesser)
 {
 	if (!root)
 		return false;
-	if (key < root->val)//×ó×ÓÊ÷
+	if (key < root->val)//å·¦å­æ ‘
 	{
-		if (!deleteNode(root->lchild, key, lesser))//É¾³ıÊ§°Ü
+		if (!deleteNode(root->lchild, key, lesser))//åˆ é™¤å¤±è´¥
 			return false;
-		if (lesser)//×ó×ÓÊ÷¸ß¶È£­1
+		if (lesser)//å·¦å­æ ‘é«˜åº¦ï¼1
 		{
 			//do something
 			switch (root->bf)
@@ -359,8 +360,8 @@ bool deleteNode(node * & root,int key,bool & lesser)
 				root->bf = -1;
 				lesser = false;
 				break;
-			case -1://ĞèÒªµ÷Õû
-				//rightBalance(root);//µ÷ÕûºóÊ÷µÄ¸ß¶È¿Ï¶¨±äµÍ
+			case -1://éœ€è¦è°ƒæ•´
+				//rightBalance(root);//è°ƒæ•´åæ ‘çš„é«˜åº¦è‚¯å®šå˜ä½
 				deleteRightBalance(root);
 				lesser = true;
 				break;
@@ -368,11 +369,11 @@ bool deleteNode(node * & root,int key,bool & lesser)
 		}
 		return true;
 	}
-	if(key > root->val)//ÓÒ×ÓÊ÷
+	if(key > root->val)//å³å­æ ‘
 	{
-		if (!deleteNode(root->rchild, key, lesser))//É¾³ıÊ§°Ü
+		if (!deleteNode(root->rchild, key, lesser))//åˆ é™¤å¤±è´¥
 			return false;
-		if (lesser)//ÓÒ×ÓÊ÷¸ß¶È-1
+		if (lesser)//å³å­æ ‘é«˜åº¦-1
 		{
 			//do something
 			switch (root->bf)
@@ -395,15 +396,15 @@ bool deleteNode(node * & root,int key,bool & lesser)
 		return true;
 	}
 
-	//É¾³ı²Ù×÷
-	if (!root->lchild && !root->rchild)//Ò¶×Ó½áµã
+	//åˆ é™¤æ“ä½œ
+	if (!root->lchild && !root->rchild)//å¶å­ç»“ç‚¹
 	{
 		delete root;
 		root = nullptr;
 		lesser = true;
 		return true;
 	}
-	if (!root->lchild || !root->rchild)//Ö»ÓĞ×ó×ÓÊ÷»òÓÒ×ÓÊ÷
+	if (!root->lchild || !root->rchild)//åªæœ‰å·¦å­æ ‘æˆ–å³å­æ ‘
 	{
 		node * p = root;
 		if (root->lchild)
@@ -414,7 +415,7 @@ bool deleteNode(node * & root,int key,bool & lesser)
 		lesser = true;
 		return true;
 	}
-	//×ó×ÓÊ÷ºÍÓÒ×ÓÊ÷¶¼´æÔÚ
+	//å·¦å­æ ‘å’Œå³å­æ ‘éƒ½å­˜åœ¨
 	node * parent = root;
 	node * prev = root->lchild;
 	while (prev->rchild)
@@ -422,9 +423,9 @@ bool deleteNode(node * & root,int key,bool & lesser)
 		parent = prev;
 		prev = prev->rchild;
 	}
-	//prev Ã»ÓĞÓÒ×ÓÊ÷
+	//prev æ²¡æœ‰å³å­æ ‘
 	root->val = prev->val;
-	if (parent == root)//ÌØÊâÇé¿ö
+	if (parent == root)//ç‰¹æ®Šæƒ…å†µ
 		parent->lchild = prev->lchild;
 	else
 		parent->rchild = prev->lchild;
@@ -433,7 +434,7 @@ bool deleteNode(node * & root,int key,bool & lesser)
 	return true;
 }
 /*
-*  ¹¦ÄÜ£º²ã´Î±éÀú
+*  åŠŸèƒ½ï¼šå±‚æ¬¡éå†
 */
 void showtree(node * root)
 {
