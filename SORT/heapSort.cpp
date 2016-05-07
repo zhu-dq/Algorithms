@@ -1,3 +1,7 @@
+/*
+    功能：堆排序
+    资料：严蔚敏 《数据结构》 p282
+*/
 #include <iostream>
 #include <vector>
 using namespace std;
